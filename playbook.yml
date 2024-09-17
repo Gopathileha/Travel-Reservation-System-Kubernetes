@@ -1,0 +1,74 @@
+---
+- name: Deploy Travel App with Docker
+  hosts: your_target_server
+  become: yes
+  vars:
+    project_root: /path/to/your/project
+
+  tasks:
+    - name: Update APT package index
+      apt:
+        update_cache: yes
+
+    - name: Install Docker dependencies
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Add Docker APT repository
+      apt_repository:
+        repo: ppa:docker-ce/stable
+        state: present
+
+    - name: Install Docker Engine
+      apt:
+        name: docker-ce
+        state: latest
+
+    - name: Install Docker Compose
+      get_url:
+        url: "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep tag_name | cut -d '\"' -f 4)/docker-compose-$(uname -s)-$(uname -m)"
+        dest: /usr/local/bin/docker-compose
+        mode: 'u+x'
+
+    - name: Verify Docker installation
+      command: docker --version
+      register: docker_version
+
+    - name: Verify Docker Compose installation
+      command: docker-compose --version
+      register: compose_version
+
+    - name: Create project directory
+      file:
+        path: "{{ project_root }}"
+        state: directory
+        mode: '0755'
+
+    - name: Copy Docker and Docker Compose files
+      copy:
+        src: "{{ item }}"
+        dest: "{{ project_root }}/{{ item }}"
+        mode: '0644'
+      with_items:
+        - Dockerfile
+        - docker-compose.yml
+
+    - name: Start Docker Compose services
+      docker_compose:
+        project_src: "{{ project_root }}"
+        state: present
+
+    - name: Ensure Docker Compose services are running
+      command: docker-compose ps
+      args:
+        chdir: "{{ project_root }}"
+      register: compose_status
+
+    - name: Debug output
+      debug:
+        msg: "{{ compose_status.stdout }}"
