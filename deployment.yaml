@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-and-mongodb-deployment
+  name: travel-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: app-and-mongodb
+      app: travel
   template:
     metadata:
       labels:
-        app: app-and-mongodb
+        app: travel
     spec:
       containers:
-      - name: nodejs-app
+      - name: travel-app
         image: gopathileha/travel:latest
         ports:
         - containerPort: 3001
