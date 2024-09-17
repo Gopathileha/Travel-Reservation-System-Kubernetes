@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: . # This specifies the directory containing your Dockerfile
+    container_name: travelapp
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/travel-reservation
+    depends_on:
+      - mongo
+    volumes:
+      - .:/usr/src/app
+    command: ["node", "app.js"]
+
+  mongo:
+    image: mongo:latest
+    container_name: tmongosh
+    environment: 
+      MONGO_INITDB_DATABASE: travel-reservation
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-data:/data/db

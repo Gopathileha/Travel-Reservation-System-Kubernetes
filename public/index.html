@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Home - ErraBassu</title>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h1>ErraBassu</h1>
+        </div>
+        <div class="links">
+            <div class="link"><a href="index.html">Home+</a></div>
+            <div class="link"><a href="about.html">About</a></div>
+            <div class="link"><a href="services.html">Services</a></div>
+            <div class="link"><a href="contact.html">Contact</a></div>
+        </div>
+        <div class="buttons">
+            <a href="login.html"><button id="login-btn">Login</button></a>
+            <a href="signup.html"><button id="signup-btn">Sign Up</button></a>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="content">
+            <h1>Your Safe Travel Journey Is Our Main Goal</h1>
+            <a href="ticket.html"><button id="get-ticket-btn">GET YOUR TICKET</button></a>
+        </div>
+    </section>
+    <div id="login-modal" class="modal hidden"></div>
+        <div class="modal-content">
+            <span id="login-close-btn" class="close-btn">&times;</span>
+            <!-- Login form or content here -->
+        </div>
+    </div>
+
+    <!-- Example modal for signup -->
+    <div id="signup-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="signup-close-btn" class="close-btn">&times;</span>
+            <!-- Signup form or content here -->
+        </div>
+    </div>
+
+    <!-- Example modal for ticket booking -->
+    <div id="ticket-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="ticket-close-btn" class="close-btn">&times;</span>
+            <!-- Ticket booking form or content here -->
+        </div>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+db.bookings.find().pretty()
+show collections
+use travel-reservation
+show dbs
