@@ -1,4 +1,17 @@
 db.bookings.find().pretty()
+db.bookings.insertOne({ name: "John Doe", gender: "Male", dob: new Date("1990-01-01"), mobile: "1234567890", email: "john@example.com", dateOfJourney: new Date("2024-09-20"), travelFrom: "City A", travelTo: "City B", passengers: 1 });
+b.bookings.insertOne({ name: "John Doe", gender: "Male", dob: new Date("1990-01-01"), mobile: "1234567890", email: "john@example.com", dateOfJourney: new Date("2024-09-20"), travelFrom: "City A", travelTo: "City B", passengers: 1 }); db.bookings.find().pretty()
+db.bookings.find().pretty()
+b.bookings.insertOne({ name: "John Doe", gender: "Male", dob: new Date("1990-01-01"), mobile: "1234567890", email: "john@example.com", dateOfJourney: new Date("2024-09-20"), travelFrom: "City A", travelTo: "City B", passengers: 1 });
+db.bookings.find().pretty()
+show collections
+use travel-reservation
+show dbs
+db.bookings.find().pretty()
+show collections
+use travel-reservation
+show dbs
+db.bookings.find().pretty()
 show collections
 use travel-reservation
 show dbs

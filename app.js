@@ -9,7 +9,9 @@ require('dotenv').config(); // Load environment variables
 const mongoURI = process.env.MONGO_URI || 'mongodb://mongo:27017/travel-reservation'; // Default to 3001 if PORT is not set
 
 // Connect to MongoDB
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://mongo:27017/travel-reservation', {
+    // remove useNewUrlParser and useUnifiedTopology options
+  })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));
 
@@ -77,10 +79,12 @@ app.post('/submit-booking', async (req, res) => {
         });
 
         const savedBooking = await newBooking.save();
+        console.log('Saved booking:', savedBooking);
         res.status(201).json({ message: 'Booking stored successfully', id: savedBooking._id });
     } catch (error) {
-        res.status(500).json({ message: 'Error saving booking', error });
-    }
+    console.error('Error saving booking:', error); // Log the error
+    res.status(500).json({ message: 'Error saving booking', error });
+}
 });
 
 // Retrieve a booking
